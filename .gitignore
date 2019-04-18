@@ -1,0 +1,6 @@
+scala/target
+c-sharp/bin/
+c-sharp/obj
+scala/project/target
+scala/.idea
+c-sharp/.vscode
