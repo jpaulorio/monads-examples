@@ -19,4 +19,12 @@ public class Person
                from supervisorSupervisor in supervisor.ReportsTo
                select supervisorSupervisor.Name;
     }
+
+    public static Option<String> GetSupervisorName2(Option<Person> maybeEmployee)
+    {
+        return maybeEmployee
+        .SelectMany(x => x.ReportsTo, (r1, r2) => new { r1 = r1, r2 = r2 })
+        .SelectMany(x => x.r2.ReportsTo, (r2, r3) => new { r2 = r2, r3 = r3 })
+        .Select(x => x.r3.Name);
+    }
 }

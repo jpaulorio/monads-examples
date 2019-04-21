@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>c_sharp</RootNamespace>
-    <StartupObject>c_sharp.WriterMonadExample</StartupObject>
+    <StartupObject>c_sharp.OptionMonadExample</StartupObject>
   </PropertyGroup>
 
 </Project>
