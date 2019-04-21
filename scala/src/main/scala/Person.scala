@@ -13,8 +13,8 @@ object Person {
 
   def getSupervisorName2(maybeEmployee: MyOption[Person]): MyOption[String] = {
     maybeEmployee
-      .flatMap(employee => employee.reportsTo
-        .flatMap(supervisor => supervisor.reportsTo
-          .map(supervisorSupervisor => supervisorSupervisor.name)))
+      .flatMap(employee => employee.reportsTo)
+        .flatMap(supervisor => supervisor.reportsTo)
+          .map(supervisorSupervisor => supervisorSupervisor.name)
   }
 }
