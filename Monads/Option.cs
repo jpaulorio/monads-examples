@@ -15,9 +15,9 @@ public class Option<TValue>
     {
         if (this.hasValue)
         {
-            return OptionFactory.Some(mapperExpression(this.value));
+            return Some(mapperExpression(this.value));
         }
-        return OptionFactory.None<TResult>();
+        return None<TResult>();
     }
 
     public Option<TResult> SelectMany<TIntermediate, TResult>(
@@ -29,14 +29,18 @@ public class Option<TValue>
             var intermediate = mapper(this.value);
             if (intermediate.hasValue)
             {
-                return OptionFactory.Some(getResult(this.value, intermediate.value));
+                return Some(getResult(this.value, intermediate.value));
             }
         }
-        return OptionFactory.None<TResult>();
+        return None<TResult>();
     }
 
     public TValue GetOrElse(TValue orElse)
     {
         return this.hasValue ? this.value : orElse;
     }
+
+    public static Option<T> Some<T>(T value) => new Option<T>(value, true);
+
+    public static Option<T> None<T>() => new Option<T>(default(T), false);
 }

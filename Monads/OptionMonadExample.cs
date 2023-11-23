@@ -1,11 +1,11 @@
 ﻿using System;
-using static OptionFactory;
+using static Option<Person>;
 
-namespace c_sharp
+namespace monads
 {
-    class OptionMonadExample
+    public class OptionMonadExample
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Option<Person> personWithSupervisor = Some(new Person("Person",
                 Some(new Person("Persons's supervisor",

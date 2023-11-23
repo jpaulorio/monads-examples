@@ -1,5 +1,4 @@
 using System;
-using static WriterFactory;
 
 public class Writer<TValue>
 {
@@ -19,7 +18,7 @@ public class Writer<TValue>
 
     public Writer<TResult> Select<TResult>(Func<TValue, TResult> mapperExpression)
     {
-        return Writer(mapperExpression(this.value), this.log);
+        return BuildWriter(mapperExpression(this.value), this.log);
     }
 
     public Writer<TResult> SelectMany<TIntermediate, TResult>(
@@ -27,8 +26,10 @@ public class Writer<TValue>
     Func<TValue, TIntermediate, TResult> getResult)
     {
         var intermediate = mapper(this.value);
-        var result = Writer(getResult(this.value, intermediate.value),
+        var result = BuildWriter(getResult(this.value, intermediate.value),
         this.log + " " + intermediate.log);
         return result;
     }
+
+    public static Writer<T> BuildWriter<T>(T value, string log) => new Writer<T>(value, log);
 }
